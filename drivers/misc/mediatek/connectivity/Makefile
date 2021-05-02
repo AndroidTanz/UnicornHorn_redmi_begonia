@@ -55,6 +55,11 @@ endif
         obj-y += wlan/adaptor/
         obj-y += wlan/core/gen4m/
     endif
+    
+    # Do build-in for rest of connectivity drivers
+    obj-y += bt/mt66xx/legacy/
+    obj-y += fmradio/
+    obj-y += gps/
 
 # Otherwise we were called directly from the command line;
 # invoke the kernel build system.

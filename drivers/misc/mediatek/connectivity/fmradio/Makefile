@@ -54,7 +54,7 @@ ifneq ($(CFG_FM_CHIP_ID),)
 endif
 
     MODULE_NAME := fmradio_drv
-    obj-m += $(MODULE_NAME).o
+    obj-y += $(MODULE_NAME).o
 
     FM_CHIP_MACRO := $(subst ",,$(CONFIG_MTK_FM_CHIP))
     FM_CHIP := $(subst _FM,,$(subst MT,mt,$(subst ",,$(CONFIG_MTK_FM_CHIP))))
@@ -103,15 +103,7 @@ endif
                     core/fm_reg_utils.o \
                     chips/$(FM_CHIP_PATH)_fm_rds.o
 
-ifeq ($(CFG_BUILD_CONNAC2), true)
-    CONNINFRA_SRC_FOLDER := $(TOP)/vendor/mediatek/kernel_modules/connectivity/conninfra
-
-    ccflags-y += -I$(CONNINFRA_SRC_FOLDER)/include
-    ccflags-y += -DCFG_FM_CONNAC2=1
-    $(FM_CHIP)-objs += chips/$(FM_CHIP_PATH)_2_fm_lib.o
-    $(FM_CHIP)-objs += plat/conn_infra.o
-else
-    WMT_SRC_FOLDER := $(TOP)/vendor/mediatek/kernel_modules/connectivity/common
+    WMT_SRC_FOLDER := $(srctree)/drivers/misc/mediatek/connectivity/common
     WMT_INCLUDE_PATH := common_main
 
     ccflags-y += -I$(WMT_SRC_FOLDER)/$(WMT_INCLUDE_PATH)/include \
@@ -119,7 +111,6 @@ else
     ccflags-y += -DCFG_FM_CONNAC2=0
     $(FM_CHIP)-objs += chips/$(FM_CHIP_PATH)_fm_lib.o
     $(FM_CHIP)-objs += plat/legacy_wmt.o
-endif
 
     $(MODULE_NAME)-objs += $($(FM_CHIP)-objs)
     #obj-$(CONFIG_MTK_FMRADIO) += private/
