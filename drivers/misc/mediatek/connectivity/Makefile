@@ -47,8 +47,10 @@ endif
         export MTK_COMBO_CHIP=CONNAC
         export WLAN_CHIP_ID=6785
         export MTK_ANDROID_WMT=y
+        export WIFI_IP_SET=2
 
         # Do build-in for xxx.c checking
+        subdir-ccflags-y += -D CFG_ENABLE_KEYWORD_EXCEPTION_MECHANISM
         subdir-ccflags-y += -D MTK_WCN_REMOVE_KERNEL_MODULE
         subdir-ccflags-y += -D MTK_WCN_BUILT_IN_DRIVER
         obj-y += common/
