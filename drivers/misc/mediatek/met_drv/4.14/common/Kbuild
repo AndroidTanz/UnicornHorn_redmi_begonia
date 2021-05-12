@@ -3,7 +3,7 @@
 ################################################################################
 ifneq ($(CONFIG_MTK_MET_BUILT_IN),y)
 $(info ======== Build met.ko ... ========)
-MET_CORE := common
+MET_CORE := 4.14/common
 obj-m := met.o
 
 ifneq ($(wildcard $(MET_PLF_DIR)/Kbuild.platform.h),)
@@ -383,8 +383,7 @@ endif
 ################################################################################
 else # ifneq ($(CONFIG_MTK_MET_BUILT_IN),y)
 $(info ======== MET Built in ... ========)
-MET_DRV_DIR := ../../../../../vendor/mediatek/kernel_modules/met_drv/$(CONFIG_KERVER_VERSION)
-MET_CORE := $(MET_DRV_DIR)/common
+MET_CORE := 4.14/common
 
 ifneq ($(wildcard $(MET_PLF_DIR)/Kbuild.platform.h),)
     include $(MET_PLF_DIR)/Kbuild.platform.h

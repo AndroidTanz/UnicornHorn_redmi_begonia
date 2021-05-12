@@ -4,18 +4,10 @@ endif	# ifeq ($(ARCH), arm)
 
 obj-y += met_api.o
 
-ifeq ($(PATCHLEVEL),)
-$(error VERSION is not defined)
-endif
-
-ifeq ($(PATCHLEVEL),)
-$(error PATCHLEVEL is not defined)
-endif
-
 ifeq ($(CONFIG_MTK_MET_BUILT_IN),y)
 ccflags-y += -DMTK_MET_BUILT_IN
 MTK_PLATFORM := $(subst ",,$(CONFIG_MTK_PLATFORM))
-MET_ROOT_DIR := $(srctree)/../vendor/mediatek/kernel_modules/met_drv/$(CONFIG_KERVER_VERSION)
+MET_ROOT_DIR := $(srctree)/drivers/misc/mediatek/met_drv/4.14
 MET_COMMON_DIR := $(wildcard $(MET_ROOT_DIR)/common)
 MET_PLF_DIR := $(wildcard $(MET_ROOT_DIR)/$(MTK_PLATFORM))
 
@@ -34,7 +26,7 @@ endif
 
 else # CONFIG_MTK_MET_BUILT_IN=n
 MTK_PLATFORM := $(subst ",,$(CONFIG_MTK_PLATFORM))
-MET_ROOT_DIR := $(srctree)/../vendor/mediatek/kernel_modules/met_drv/$(CONFIG_KERVER_VERSION)
+MET_ROOT_DIR := $(srctree)/drivers/misc/mediatek/met_drv/4.14
 MET_COMMON_DIR := $(wildcard $(MET_ROOT_DIR)/common)
 MET_PLF_DIR := $(wildcard $(MET_ROOT_DIR)/$(MTK_PLATFORM))
 
