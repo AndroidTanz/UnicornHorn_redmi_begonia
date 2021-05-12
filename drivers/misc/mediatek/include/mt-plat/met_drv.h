@@ -25,6 +25,10 @@ extern int met_mode;
 #define MET_MODE_TRACE_CMD_OFFSET	(1)
 #define MET_MODE_TRACE_CMD			(1<<MET_MODE_TRACE_CMD_OFFSET)
 
+#ifdef CONFIG_MET_MODULE
+#define preempt_enable_no_resched() preempt_enable()
+#endif
+
 #define MET_STRBUF_SIZE		1024
 DECLARE_PER_CPU(char[MET_STRBUF_SIZE], met_strbuf_nmi);
 DECLARE_PER_CPU(char[MET_STRBUF_SIZE], met_strbuf_irq);
@@ -568,6 +572,13 @@ enum SMI_REQUEST {
 	SMI_REQ_PREULTRA	= 2,
 	SMI_NORMAL_ULTRA	= 3,
 	SMI_REQ_NONE		= 9
+};
+
+struct smi_desc {
+	unsigned long port;
+	enum SMI_DEST desttype;
+	enum SMI_RW rwtype;
+	enum SMI_BUS bustype;
 };
 
 struct met_smi_conf {
