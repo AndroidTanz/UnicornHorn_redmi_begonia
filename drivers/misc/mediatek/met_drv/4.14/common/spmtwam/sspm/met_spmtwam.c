@@ -199,22 +199,22 @@ void ms_spmtwam(struct twam_cfg *cfg, struct twam_select *twam_sel)
 {
 	switch (used_count) {
 	case 1:
-		MET_TRACE(MP_FMT1,
+		MET_PRINTK(MP_FMT1,
 			(cfg->byte[0].id));
 		break;
 	case 2:
-		MET_TRACE(MP_FMT2,
+		MET_PRINTK(MP_FMT2,
 			(cfg->byte[0].id),
 			(cfg->byte[1].id));
 		break;
 	case 3:
-		MET_TRACE(MP_FMT3,
+		MET_PRINTK(MP_FMT3,
 			(cfg->byte[0].id),
 			(cfg->byte[1].id),
 			(cfg->byte[2].id));
 		break;
 	case 4:
-		MET_TRACE(MP_FMT4,
+		MET_PRINTK(MP_FMT4,
 			(cfg->byte[0].id),
 			(cfg->byte[1].id),
 			(cfg->byte[2].id),

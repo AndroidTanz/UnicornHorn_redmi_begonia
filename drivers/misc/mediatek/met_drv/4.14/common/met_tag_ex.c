@@ -82,33 +82,33 @@ noinline int tracing_mark_write(int type, unsigned int class_id,
 				       unsigned int value2, unsigned int value3)
 {
 	if (type == TYPE_MET_SUSPEND) {
-		MET_TRACE("C|0|MET_SUSPEND|1");
+		MET_PRINTK("C|0|MET_SUSPEND|1");
 		return 0;
 	}
 	if (type == TYPE_MET_RESUME) {
-		MET_TRACE("C|0|MET_SUSPEND|0");
+		MET_PRINTK("C|0|MET_SUSPEND|0");
 		return 0;
 	}
 	if (!is_enabled(class_id))
 		return 0;
 	switch (type) {
 	case TYPE_START:
-		MET_TRACE("B|%d|%s\n", class_id, name);
+		MET_PRINTK("B|%d|%s\n", class_id, name);
 		break;
 	case TYPE_END:
-		MET_TRACE("E|%s\n", name);
+		MET_PRINTK("E|%s\n", name);
 		break;
 	case TYPE_ONESHOT:
-		MET_TRACE("C|%d|%s|%d\n", class_id, name, value);
+		MET_PRINTK("C|%d|%s|%d\n", class_id, name, value);
 		break;
 	case TYPE_ASYNC_START:
-		MET_TRACE("S|%d|%s|%d\n", class_id, name, value);
+		MET_PRINTK("S|%d|%s|%d\n", class_id, name, value);
 		break;
 	case TYPE_ASYNC_END:
-		MET_TRACE("F|%d|%s|%d\n", class_id, name, value);
+		MET_PRINTK("F|%d|%s|%d\n", class_id, name, value);
 		break;
 	case TYPE_DUMP:
-		MET_TRACE("D|%d|%s|%d|%d|%d\n", class_id, name, value, value2, value3);
+		MET_PRINTK("D|%d|%s|%d|%d|%d\n", class_id, name, value, value2, value3);
 		break;
 	default:
 		return -1;
@@ -205,7 +205,7 @@ EXPORT_SYMBOL(met_tag_oneshot_real);
 
 int met_tag_userdata_real(char *pData)
 {
-	MET_TRACE("%s\n", pData);
+	MET_PRINTK("%s\n", pData);
 	return 0;
 }
 

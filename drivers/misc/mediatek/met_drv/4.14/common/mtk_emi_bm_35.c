@@ -31,7 +31,7 @@ static inline unsigned int emi_readl(void __iomem *padr)
 	unsigned int tmp;
 
 	tmp = readl(padr);
-	MET_TRACE("[MET_EMI] RD_Reg: %p: %08x\n", padr, tmp);
+	MET_PRINTK("[MET_EMI] RD_Reg: %p: %08x\n", padr, tmp);
 	return tmp;
 }
 
@@ -41,7 +41,7 @@ static inline void __emi_reg_sync_writel(unsigned int data, void __iomem *padr)
 
 	mt_reg_sync_writel(data, padr);
 	tmp = readl(padr);
-	MET_TRACE("[MET_EMI] WR_Reg: %p: %08x, %08x\n", padr, data, tmp);
+	MET_PRINTK("[MET_EMI] WR_Reg: %p: %08x, %08x\n", padr, data, tmp);
 }
 
 #define emi_reg_sync_writel(data, adr)  __emi_reg_sync_writel(data, IOMEM(adr))
@@ -265,19 +265,19 @@ int MET_BM_SetTtypeCounterRW(unsigned int bmrw0_val, unsigned int bmrw1_val)
 	unsigned int value_origin;
 
 	value_origin = emi_readl(IOMEM(ADDR_EMI + EMI_BMRW0));
-	MET_TRACE("[MET_EMI_settype1] value_origin: %x\n", value_origin);
+	MET_PRINTK("[MET_EMI_settype1] value_origin: %x\n", value_origin);
 	if (value_origin != bmrw0_val) {
 		emi_reg_sync_writel(bmrw0_val, ADDR_EMI + EMI_BMRW0);
-		MET_TRACE("[MET_EMI_settype1] bmrw0_val: %x, value_origin: %x\n", bmrw0_val,
+		MET_PRINTK("[MET_EMI_settype1] bmrw0_val: %x, value_origin: %x\n", bmrw0_val,
 			   value_origin);
 	}
 
 
 	value_origin = emi_readl(IOMEM(ADDR_EMI + EMI_BMRW1));
-	MET_TRACE("[MET_EMI_settype2] value_origin: %x\n", value_origin);
+	MET_PRINTK("[MET_EMI_settype2] value_origin: %x\n", value_origin);
 	if (value_origin != bmrw1_val) {
 		emi_reg_sync_writel(bmrw1_val, ADDR_EMI + EMI_BMRW1);
-		MET_TRACE("[MET_EMI_settype2] bmrw0_val: %x, value_origin: %x\n", bmrw1_val,
+		MET_PRINTK("[MET_EMI_settype2] bmrw0_val: %x, value_origin: %x\n", bmrw1_val,
 			   value_origin);
 
 	}

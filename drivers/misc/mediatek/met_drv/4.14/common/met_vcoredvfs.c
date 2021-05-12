@@ -139,27 +139,27 @@ noinline void vcorefs(unsigned char cnt, unsigned int *value)
 {
 	char *SOB, *EOB;
 
-	MET_TRACE_GETBUF(&SOB, &EOB);
+	MET_PRINTK_GETBUF(&SOB, &EOB);
 	EOB = ms_formatH_EOL(EOB, cnt, value);
-	MET_TRACE_PUTBUF(SOB, EOB);
+	MET_PRINTK_PUTBUF(SOB, EOB);
 }
 
 noinline void vcorefs_kicker(unsigned char cnt, int *value)
 {
 	char *SOB, *EOB;
 
-	MET_TRACE_GETBUF(&SOB, &EOB);
+	MET_PRINTK_GETBUF(&SOB, &EOB);
 	EOB = ms_formatH_EOL(EOB, cnt, value);
-	MET_TRACE_PUTBUF(SOB, EOB);
+	MET_PRINTK_PUTBUF(SOB, EOB);
 }
 
 noinline void ms_vcorefs(unsigned char cnt, unsigned int *value)
 {
 	char *SOB, *EOB;
 
-	MET_TRACE_GETBUF(&SOB, &EOB);
+	MET_PRINTK_GETBUF(&SOB, &EOB);
 	EOB = ms_formatH_EOL(EOB, cnt, value);
-	MET_TRACE_PUTBUF(SOB, EOB);
+	MET_PRINTK_PUTBUF(SOB, EOB);
 }
 
 /*======================================================================*/

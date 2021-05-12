@@ -17,7 +17,7 @@
 #define MET_SPMTWAM_TAG "[met_spmtwam]"
 #define MET_SPMTWAM_ERR(format, ...) \
 	do { \
-		MET_TRACE(MET_SPMTWAM_TAG format, ##__VA_ARGS__); \
+		MET_PRINTK(MET_SPMTWAM_TAG format, ##__VA_ARGS__); \
 		PR_BOOTMSG(MET_SPMTWAM_TAG format, ##__VA_ARGS__); \
 	} while (0)
 

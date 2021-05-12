@@ -605,10 +605,10 @@ static noinline void tracing_mark_write(int op)
 {
 	switch (op) {
 	case MET_SUSPEND:
-		MET_TRACE("C|0|MET_SUSPEND|1");
+		MET_PRINTK("C|0|MET_SUSPEND|1");
 		break;
 	case MET_RESUME:
-		MET_TRACE("C|0|MET_SUSPEND|0");
+		MET_PRINTK("C|0|MET_SUSPEND|0");
 		break;
 	}
 }
@@ -630,7 +630,7 @@ int met_hrtimer_suspend(void)
 	}
 
 	/* get current COUNT */
-	MET_TRACE("TS: %llu GPT: %llX", sched_clock(), arch_counter_get_cntvct());
+	MET_PRINTK("TS: %llu GPT: %llX", sched_clock(), arch_counter_get_cntvct());
 	return 0;
 }
 
@@ -639,7 +639,7 @@ void met_hrtimer_resume(void)
 	struct metdevice *c;
 
 	/* get current COUNT */
-	MET_TRACE("TS: %llu GPT: %llX", sched_clock(), arch_counter_get_cntvct());
+	MET_PRINTK("TS: %llu GPT: %llX", sched_clock(), arch_counter_get_cntvct());
 
 	/* tracing_mark_write(MET_RESUME); */
 	tracing_mark_write(TYPE_MET_RESUME, 0, 0, 0, 0, 0);

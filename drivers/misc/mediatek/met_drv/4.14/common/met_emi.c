@@ -126,7 +126,7 @@ static ssize_t test_store(struct kobject *kobj,
 	met_tag_end(0, "TEST_EMI");
 #endif
 
-	my_preempt_enable();
+	preempt_enable_no_resched()
 
 #ifdef CONFIG_ARM
 	/* dma_free */

@@ -50,7 +50,7 @@ noinline void ms_ptpod(void)
 	char *SOB, *EOB;
 
 	if (g_ap_ptpod) {
-		MET_TRACE_GETBUF(&SOB, &EOB);
+		MET_PRINTK_GETBUF(&SOB, &EOB);
 
 		if (gpu_volt_enable) {
 			g_u4Volt[MT_GPU_DVFS_IDX] = g_u4GPUVolt;
@@ -58,12 +58,12 @@ noinline void ms_ptpod(void)
 		} else
 			EOB = ms_formatD_EOL(EOB, ARRAY_SIZE(g_u4Volt) - 1, g_u4Volt);
 
-		MET_TRACE_PUTBUF(SOB, EOB);
+		MET_PRINTK_PUTBUF(SOB, EOB);
 	} else {
 		if (gpu_volt_enable) {
-			MET_TRACE_GETBUF(&SOB, &EOB);
+			MET_PRINTK_GETBUF(&SOB, &EOB);
 			EOB = ms_formatD_EOL(EOB, 1, &g_u4GPUVolt);
-			MET_TRACE_PUTBUF(SOB, EOB);
+			MET_PRINTK_PUTBUF(SOB, EOB);
 		}
 	}
 }

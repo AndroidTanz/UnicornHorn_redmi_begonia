@@ -157,27 +157,27 @@ noinline void vcorefs(unsigned char cnt, unsigned int *value)
 {
 	char *SOB, *EOB;
 
-	MET_TRACE_GETBUF(&SOB, &EOB);
+	MET_PRINTK_GETBUF(&SOB, &EOB);
 	EOB = ms_formatH_EOL(EOB, cnt, value);
-	MET_TRACE_PUTBUF(SOB, EOB);
+	MET_PRINTK_PUTBUF(SOB, EOB);
 }
 
 noinline void vcorefs_kicker(unsigned char cnt, int *value)
 {
 	char *SOB, *EOB;
 
-	MET_TRACE_GETBUF(&SOB, &EOB);
+	MET_PRINTK_GETBUF(&SOB, &EOB);
 	EOB = ms_formatH_EOL(EOB, cnt, value);
-	MET_TRACE_PUTBUF(SOB, EOB);
+	MET_PRINTK_PUTBUF(SOB, EOB);
 }
 
 noinline void ms_vcorefs(unsigned char cnt, unsigned int *value)
 {
 	char *SOB, *EOB;
 
-	MET_TRACE_GETBUF(&SOB, &EOB);
+	MET_PRINTK_GETBUF(&SOB, &EOB);
 	EOB = ms_formatH_EOL(EOB, cnt, value);
-	MET_TRACE_PUTBUF(SOB, EOB);
+	MET_PRINTK_PUTBUF(SOB, EOB);
 }
 
 /*======================================================================*/
@@ -266,7 +266,7 @@ static void met_vcoredvfs_start(void)
 	if (vcorefs_register_req_notify_symbol)
 		vcorefs_register_req_notify_symbol(sw_kicker_req);
 	else
-		MET_TRACE("vcorefs_register_req_notify not exist!\n");
+		MET_PRINTK("vcorefs_register_req_notify not exist!\n");
 
 	if (!polling_mode && vcorefs_enable_debug_isr_symbol)
 		vcorefs_enable_debug_isr_symbol(true);

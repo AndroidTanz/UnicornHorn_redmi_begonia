@@ -50,11 +50,11 @@ noinline void mt_switch(struct task_struct *prev, struct task_struct *next)
 
 	cpu = smp_processor_id();
 	if (per_cpu(first_log, cpu)) {
-		MET_TRACE("%d, %d, %d, %d\n", prev->pid, prev_state, next->pid, next_state);
+		MET_PRINTK("%d, %d, %d, %d\n", prev->pid, prev_state, next->pid, next_state);
 		per_cpu(first_log, cpu) = 0;
 	}
 	else if (prev_state != next_state)
-		MET_TRACE("%d, %d, %d, %d\n", prev->pid, prev_state, next->pid, next_state);
+		MET_PRINTK("%d, %d, %d, %d\n", prev->pid, prev_state, next->pid, next_state);
 }
 
 

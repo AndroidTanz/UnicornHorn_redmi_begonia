@@ -39,7 +39,7 @@ static int event_gpu_enabled;
 noinline void gpu_sched_switch(const char *gpu_name, u64 timestamp,
 				      u32 next_ctx_id, s32 next_prio, u32 next_job_id)
 {
-	MET_TRACE("gpu_name=%s ts=%llu.%06lu next_ctx_id=%lu next_prio=%ld next_job_id=%lu\n",
+	MET_PRINTK("gpu_name=%s ts=%llu.%06lu next_ctx_id=%lu next_prio=%ld next_job_id=%lu\n",
 		   gpu_name,
 		   (unsigned long long)show_secs_from_ns(timestamp),
 		   (unsigned long)show_usecs_from_ns(timestamp),
@@ -54,7 +54,7 @@ MET_DEFINE_PROBE(gpu_sched_switch, TP_PROTO(const char *gpu_name, u64 timestamp,
 
 noinline void gpu_job_enqueue(u32 ctx_id, u32 job_id, const char *type)
 {
-	MET_TRACE("ctx_id=%lu job_id=%lu type=%s",
+	MET_PRINTK("ctx_id=%lu job_id=%lu type=%s",
 		   (unsigned long)ctx_id, (unsigned long)job_id, type);
 }
 
@@ -111,7 +111,7 @@ met_trace_print_symbols_seq(char* pclass_name, unsigned long val,
 void pm_qos_update_request(int pm_qos_class, s32 value, char *owner)
 {
 	char class_name[64];
-	MET_TRACE("pm_qos_class=%s value=%d owner=%s\n",
+	MET_PRINTK("pm_qos_class=%s value=%d owner=%s\n",
 	  __print_symbolic(class_name, pm_qos_class,
 		{ _PM_QOS_CPU_DMA_LATENCY,	"CPU_DMA_LATENCY" },
 		{ _PM_QOS_NETWORK_LATENCY,	"NETWORK_LATENCY" },
@@ -127,7 +127,7 @@ void pm_qos_update_target(unsigned int action, int prev_value, int curr_value)
 {
 	char class_name[64];
 
-	MET_TRACE("action=%s prev_value=%d curr_value=%d\n",
+	MET_PRINTK("action=%s prev_value=%d curr_value=%d\n",
 	  __print_symbolic(class_name, action,
 		{ _PM_QOS_ADD_REQ,	"ADD_REQ" },
 		{ _PM_QOS_UPDATE_REQ,	"UPDATE_REQ" },

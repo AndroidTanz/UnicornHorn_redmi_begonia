@@ -133,7 +133,7 @@ noinline void met_mono_time(void)
 	u64 cur_local_ns = sched_clock();
 	ktime_t cur_mono_ts = ktime_get();
 
-	MET_TRACE("TS.APTS=%llu TS.MONO=%llu\n", (unsigned long long)cur_local_ns,
+	MET_PRINTK("TS.APTS=%llu TS.MONO=%llu\n", (unsigned long long)cur_local_ns,
 		(unsigned long long)ktime_to_ns(cur_mono_ts));
 }
 
@@ -156,7 +156,7 @@ noinline void met_ap_wall_time(unsigned long long ts, int cpu)
 
 		sec = us_ts;
 		usec = do_div(sec, 1000000);	/* sec = us_ts/1000000; usec = us_ts%1000000; */
-		MET_TRACE("TS.APTS=%llu.%06llu WCLK=%llu\n", (unsigned long long)sec,
+		MET_PRINTK("TS.APTS=%llu.%06llu WCLK=%llu\n", (unsigned long long)sec,
 			   (unsigned long long)usec, (unsigned long long)cycles);
 
 		// print local time vs mono time for gpu time shift
@@ -174,7 +174,7 @@ noinline void met_ap_wall_time(unsigned long long ts, int cpu)
 			freq = lookup_freq_level(f);
 
 			/* debug message */
-			/* MET_TRACE("wall_time debug: result: %u," */
+			/* MET_PRINTK("wall_time debug: result: %u," */
 			/*         "start cycle: %llu, end cycle: %llu, cycle diff: %llu," */
 			/*         "start us: %llu, end us: %llu, us diff: %llu", */
 			/*         f, */
