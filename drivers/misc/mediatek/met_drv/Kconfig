@@ -6,3 +6,10 @@ config MTK_MET_MEM_ALLOC
 	  set Y to use dynamic alloc buffer
 	  If unsure,
 	  Set N to use reserve 4MB buffer
+
+config MTK_MET_BUILT_IN
+        bool "Build MET module in kernel"
+        help
+	  This will build the MET driver and the corresponding componenets
+	  into the kernel.
+	  If unsure say n
