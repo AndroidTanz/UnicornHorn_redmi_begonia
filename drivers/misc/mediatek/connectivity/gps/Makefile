@@ -12,7 +12,7 @@
 ###############################################################################
 # Necessary Check
 
-ifeq ($(TARGET_BUILD_VARIANT),$(filter $(TARGET_BUILD_VARIANT),userdebug user))
+ifneq ($(CONFIG_MTK_COMBO_ENABLE_DEBUG), y)
     ldflags-y += -s
 endif
 

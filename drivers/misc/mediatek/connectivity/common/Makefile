@@ -7,8 +7,8 @@ ifeq ($(CONFIG_MTK_COMBO_CHIP),)
     $(error CONFIG_MTK_COMBO_CHIP not defined)
 endif
 
-ifeq ($(TARGET_BUILD_VARIANT),$(filter $(TARGET_BUILD_VARIANT),userdebug user))
-    #ldflags-y += -s
+ifneq ($(CONFIG_MTK_COMBO_ENABLE_DEBUG), y)
+    ldflags-y += -s
 endif
 
 # Force build fail on modpost warning
@@ -147,13 +147,13 @@ ccflags-y += -D WMT_UART_RX_MODE_WORK=0 # 1. work thread 0. tasklet
 ccflags-y += -D WMT_SDIO_MODE=1
 ccflags-y += -D WMT_CREATE_NODE_DYNAMIC=1
 
-ifneq ($(TARGET_BUILD_VARIANT),eng)
+ifeq ($(CONFIG_MTK_COMBO_ENABLE_DEBUG), y)
 ifeq ($(CONFIG_EXTREME_LOW_RAM), y)
 ccflags-y += -DLOG_STP_DEBUG_DISABLE
 endif
 endif
 
-ifneq ($(TARGET_BUILD_VARIANT), user)
+ifeq ($(CONFIG_MTK_COMBO_ENABLE_DEBUG), y)
     ccflags-y += -D WMT_DBG_SUPPORT=1
 else
     ccflags-y += -D WMT_DBG_SUPPORT=0
@@ -177,7 +177,7 @@ endif
 ifeq ($(wildcard vendor/mediatek/proprietary/external/aee_config_internal/init.aee.mtk.system.rc),)
 	ccflags-y += -D CFG_WMT_STEP
 else
-	ifneq ($(TARGET_BUILD_VARIANT),user)
+	ifeq ($(CONFIG_MTK_COMBO_ENABLE_DEBUG), y)
 		ccflags-y += -D CFG_WMT_STEP
 	endif
 endif
@@ -237,11 +237,11 @@ $(MODULE_NAME)-objs += debug_utility/connsys_debug_utility.o
 ###############################################################################
 # test
 ###############################################################################
-ifeq ($(TARGET_BUILD_VARIANT),eng)
+ifeq ($(CONFIG_MTK_COMBO_ENABLE_DEBUG), y)
 ccflags-y += -I$(src)/test/include
 endif
 
-ifeq ($(TARGET_BUILD_VARIANT),eng)
+ifeq ($(CONFIG_MTK_COMBO_ENABLE_DEBUG), y)
 $(MODULE_NAME)-objs += test/wmt_step_test.o
 endif
 
