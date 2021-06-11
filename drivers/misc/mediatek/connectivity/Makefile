@@ -48,6 +48,8 @@ endif
         export WLAN_CHIP_ID=6785
         export MTK_ANDROID_WMT=y
         export WIFI_IP_SET=2
+        export WIFI_ECO_VER=1
+        export ADAPTOR_OPTS=$(MTK_COMBO_CHIP)
 
         # Do build-in for xxx.c checking
         subdir-ccflags-y += -D CFG_ENABLE_KEYWORD_EXCEPTION_MECHANISM
